@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BioGrid - Cidades Inteligentes e Sustentáveis</title>
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e6f0e6;
+      color: #0b3d0b;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(90deg, #0a5a0a, #3f7d3f);
+      padding: 20px;
+      color: #d9f0d9;
+      text-align: center;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      letter-spacing: 2px;
+    }
+    nav {
+      background-color: #2e6f2e;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      box-shadow: inset 0 -2px 5px rgba(0,0,0,0.2);
+    }
+    nav a {
+      color: #d9f0d9;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #a8dba8;
+    }
+    main {
+      flex-grow: 1;
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 0 20px;
+    }
+    section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      color: #1a421a;
+      margin-bottom: 20px;
+      font-size: 2rem;
+      border-bottom: 3px solid #4caf50;
+      padding-bottom: 8px;
+    }
+    p {
+      margin-bottom: 18px;
+      font-size: 1.1rem;
+      text-align: justify;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 12px;
+      margin-top: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    /* Mapa ilustrado (simples) */
+    .map-container {
+      position: relative;
+      background: #d4e9d4;
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+    }
+    .map-image {
+      width: 100%;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+    .tooltip {
+      position: absolute;
+      background: #4caf50cc;
+      color: white;
+      padding: 10px;
+      border-radius: 8px;
+      max-width: 220px;
+      display: none;
+      font-size: 0.95rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      pointer-events: none;
+      z-index: 10;
+    }
+    /* Painel de dados */
+    .data-panel {
+      background: #c6e2c6;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    }
+    .chart-container {
+      margin-top: 20px;
+    }
+    /* Formulário contato */
+    #contact {
+      background: #d4e9d4;
+      border-radius: 15px;
+      padding: 25px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto 40px auto;
+    }
+    #contact h2 {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #0b3d0b;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: 1.5px solid #3f7d3f;
+      font-size: 1rem;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, textarea:focus {
+      border-color: #4caf50;
+      outline: none;
+    }
+    button {
+      background-color: #2e6f2e;
+      color: #d9f0d9;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 700;
+      width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #4caf50;
+    }
+    footer {
+      background: #0a5a0a;
+      color: #c9f0c9;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      box-shadow: 0 -3px 6px rgba(0,0,0,0.3);
+    }
+    /* Responsividade */
+    @media (max-width: 768px) {
+      nav {
+        flex-wrap: wrap;
+      }
+      nav a {
+        margin: 10px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>BioGrid - Cidades Inteligentes e Sustentáveis</h1>
+</header>
+
+<nav>
+  <a href="#iot">IoT nas Cidades</a>
+  <a href="#sustentabilidade">Sustentabilidade Urbana</a>
+  <a href="#mobilidade">Mobilidade Ativa e IA</a>
+  <a href="#saude">Tecnologia e Saúde</a>
+  <a href="#mapa">Mapa Ilustrado</a>
+  <a href="#dados">Painel de Dados</a>
+  <a href="#contato">Contato</a>
+</nav>
+
+<main>
+
+  <section id="iot">
+    <h2>Internet das Coisas (IoT) nas Cidades Inteligentes</h2>
+    <p>
+      A Internet das Coisas (IoT) é uma das tecnologias mais revolucionárias da atualidade, trazendo conectividade e automação para diversos aspectos da vida urbana. Em cidades inteligentes, sensores e dispositivos conectados coletam dados em tempo real para monitorar desde o consumo energético até a qualidade do ar, o trânsito, a segurança pública e muito mais.
+    </p>
+    <p>
+      Essa integração permite uma gestão urbana eficiente, reduzindo desperdícios, otimizando recursos e melhorando a qualidade de vida dos cidadãos. Exemplos incluem iluminação pública inteligente que ajusta a intensidade conforme o movimento, coleta de lixo automatizada, e monitoramento ambiental contínuo.
+    </p>
+    <img src="https://www.tecverde.com.br/wp-content/uploads/2022/06/smart.jpeg" alt="Ilustração de IoT em cidade inteligente" />
+  </section>
+
+  <section id="sustentabilidade">
+    <h2>Sustentabilidade Urbana e BioGrid</h2>
+    <p>
+      Cidades sustentáveis buscam equilibrar o desenvolvimento econômico com a preservação ambiental e o bem-estar social. O conceito BioGrid propõe a criação de bairros eco inteligentes que utilizam energia renovável, promovem a eficiência energética e priorizam espaços verdes e ciclovias.
+    </p>
+    <p>
+      A implementação de tecnologias verdes e práticas urbanas conscientes são essenciais para mitigar os impactos ambientais causados pela urbanização acelerada. No BioGrid, a energia é consumida de forma racional, com monitoramento contínuo para identificar oportunidades de economia e redução da emissão de gases poluentes.
+    </p>
+    <img src="https://www.jornalcruzeiro.com.br/_midias/jpg/2024/01/10/sustentatilidade__1_-1260691.jpg" alt="Cidade sustentável com energia limpa" />
+  </section>
+
+  <section id="mobilidade">
+    <h2>Mobilidade Ativa e Inteligência Artificial</h2>
+    <p>
+      A mobilidade ativa — como caminhar e andar de bicicleta — é incentivada em cidades inteligentes para reduzir o uso de veículos motorizados, melhorando a saúde pública e diminuindo a poluição. Tecnologias de inteligência artificial (IA) também estão transformando a mobilidade urbana, otimizando o fluxo do trânsito, prevenindo acidentes e aumentando a segurança.
+    </p>
+    <p>
+      Sistemas inteligentes de transporte público, carros autônomos e aplicativos de compartilhamento são exemplos que mostram como a inovação pode tornar as cidades mais ágeis, sustentáveis e humanas.
+    </p>
+    <img src="https://teltex.com.br/wp-content/uploads/2025/03/Como-a-IA-esta-transformando-a-mobilidade-urbana-e-a-seguranca-no-transito-1-jpg.webp" alt="Tecnologia IA na mobilidade urbana" />
+  </section>
+
+  <section id="saude">
+    <h2>Tecnologia, Saúde e Bem-estar nas Cidades</h2>
+    <p>
+      A saúde urbana também é beneficiada pelas tecnologias digitais, que monitoram parâmetros ambientais e condições sanitárias para prevenir doenças e promover o bem-estar social. O uso de sensores e dados em tempo real permite identificar focos de poluição, riscos de contaminação e até tendências de doenças crônicas.
+    </p>
+    <p>
+      Além disso, a integração entre saúde e tecnologia proporciona acesso facilitado a serviços médicos, acompanhamento remoto de pacientes e campanhas educativas para a população.
+    </p>
+    <img src="https://portalhospitaisbrasil.com.br/wp-content/uploads/2020/06/tecnologia-na-saude-min-1280x720-1.jpg" alt="Tecnologia na saúde e bem-estar" />
+  </section>
+
+  <section id="mapa" class="map-container">
+    <h2>Mapa Ilustrado do Bairro BioGrid</h2>
+    <p>
+      Explore o bairro eco inteligente ilustrado abaixo. Clique nos elementos para saber mais sobre suas funções e benefícios para a sustentabilidade urbana.
+    </p>
+    <img
+      src="https://sdmntprwestus3.oaiusercontent.com/files/00000000-c704-61fd-b0b1-4b9d16ca3682/raw?se=2025-05-20T01%3A57%3A48Z&sp=r&sv=2024-08-04&sr=b&scid=cc052d8d-bdde-593b-996e-867585e0349d&skoid=7399a3a4-0259-4d43-bcd6-a56ceeb4c28b&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2025-05-20T00%3A33%3A51Z&ske=2025-05-21T00%3A33%3A51Z&sks=b&skv=2024-08-04&sig=gIbQCHWBTDkFJq%2BY4nXW9SCGhArA%2BmPbMNhypsGJgTw%3D"
+      alt="Mapa ilustrado de bairro sustentável com IoT"
+      class="map-image"
+      id="mapImage"
+    />
+    <div class="tooltip" id="tooltip"></div>
+  </section>
+
+  <section id="dados" class="data-panel">
+    <h2>Painel de Dados Simulados</h2>
+    <p>
+      Aqui você pode visualizar dados simulados sobre consumo de energia e qualidade do ar no bairro BioGrid. Esses dados são baseados em estudos reais e refletem o potencial de monitoramento em tempo real para melhorar a gestão urbana.
+    </p>
+    <canvas id="energyChart" width="600" height="300"></canvas>
+    <canvas id="airChart" width="600" height="300" style="margin-top: 30px;"></canvas>
+  </section>
+
+  <section id="contato">
+    <h2>Fale Conosco</h2>
+    <form id="contact-form">
+      <label for="name">Nome Completo:</label>
+      <input type="text" id="name" name="name" placeholder="Seu nome completo" required />
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" placeholder="seuemail@exemplo.com" required />
+
+      <label for="message">Mensagem:</label>
+      <textarea id="message" name="message" rows="5" placeholder="Digite sua dúvida ou mensagem aqui..." required></textarea>
+
+      <button type="submit">Enviar</button>
+    </form>
+  </section>
+
+</main>
+
+<footer>
+  &copy; 2025 BioGrid. Desenvolvido para promover cidades inteligentes e sustentabilidade.
+</footer>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  // Tooltip para mapa ilustrado
+  const mapImage = document.getElementById('mapImage');
+  const tooltip = document.getElementById('tooltip');
+
+  // Dados simples para tooltip com base na posição do clique (exemplo)
+  mapImage.addEventListener('click', (event) => {
+    const rect = mapImage.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    // Exemplo simples de áreas clicáveis (podem ser ajustadas conforme imagem real)
+    let text = '';
+    if (x > 50 && x < 150 && y > 40 && y < 120) {
+      text = '<strong>Parque Sustentável</strong><br>Espaço verde com sensores ambientais que monitoram a qualidade do ar e promovem a biodiversidade local.';
+    } else if (x > 160 && x < 260 && y > 60 && y < 130) {
+      text = '<strong>Estação de Energia Solar</strong><br>Painéis solares que abastecem o bairro com energia limpa e renovável, reduzindo a emissão de carbono.';
+    } else {
+      text = 'Clique em um ponto verde para mais informações.';
+    }
+
+    tooltip.innerHTML = text;
+    tooltip.style.left = event.pageX + 10 + 'px';
+    tooltip.style.top = event.pageY + 10 + 'px';
+    tooltip.style.display = 'block';
+  });
+
+  // Esconde tooltip ao clicar fora
+  document.addEventListener('click', (e) => {
+    if (e.target !== mapImage) {
+      tooltip.style.display = 'none';
+    }
+  });
+
+  // Dados simulados para gráficos
+  const energyCtx = document.getElementById('energyChart').getContext('2d');
+  const airCtx = document.getElementById('airChart').getContext('2d');
+
+  const energyChart = new Chart(energyCtx, {
+    type: 'line',
+    data: {
+      labels: ['00h', '04h', '08h', '12h', '16h', '20h', '24h'],
+      datasets: [{
+        label: 'Consumo de Energia (kWh)',
+        data: [20, 15, 25, 40, 35, 30, 22],
+        borderColor: '#4caf50',
+        backgroundColor: 'rgba(76, 175, 80, 0.3)',
+        fill: true,
+        tension: 0.3,
+        pointRadius: 5
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#0b3d0b' } }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#0b3d0b' }
+        },
+        x: {
+          ticks: { color: '#0b3d0b' }
+        }
+      }
+    }
+  });
+
+  const airChart = new Chart(airCtx, {
+    type: 'bar',
+    data: {
+      labels: ['PM2.5', 'PM10', 'NO2', 'CO', 'O3'],
+      datasets: [{
+        label: 'Qualidade do Ar (µg/m³)',
+        data: [12, 20, 14, 8, 10],
+        backgroundColor: '#3f7d3f'
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { labels: { color: '#0b3d0b' } }
+      },
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: { color: '#0b3d0b' }
+        },
+        x: {
+          ticks: { color: '#0b3d0b' }
+        }
+      }
+    }
+  });
+
+  // Simples feedback no envio do formulário
+  const form = document.getElementById('contact-form');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Obrigado pelo contato! Responderemos em breve.');
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
